@@ -1,0 +1,9 @@
+{
+  "name": "peek-frontend",
+  "version": "1.0.0",
+  "description": "React-based frontend solution for the Peek project.",
+  "main": "index.js",
+  "repository": "https://github.com/Unorthdox-Developers/peek-frontend",
+  "author": "Frol Shpak <frol.shpak@gmail.com>",
+  "license": "MIT"
+}
