@@ -1,14 +1,17 @@
 {
   "compilerOptions": {
-      "target": "ES6",
-      "module": "commonjs",
-      "allowSyntheticDefaultImports": true,
-      "baseUrl": "./",
-      "paths": {
-          "~/*": ["./src/*"],
-          "@pages/*": ["./src/pages/*"],
-          "@components/*": ["./src/components/*"]
-      }
+    "target": "ES6",
+    "module": "commonjs",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "paths": {
+      "@pages/*": ["./src/pages/*"],
+      "@components/*": ["./src/components/*"],
+      "@atoms/*": ["./src/components/atoms/*"],
+      "@molecules/*": ["./src/components/molecules/*"],
+      "@organisms/*": ["./src/components/organisms/*"],
+      "@templates/*": ["./src/templates/*"]
+    }
   },
   "exclude": ["node_modules"]
 }
