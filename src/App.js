@@ -1,4 +1,5 @@
 import { createUseStyles } from "react-jss";
+import TestPage from "@pages/TestPage";
 
 const appClasses = createUseStyles({
   app: {},
@@ -6,7 +7,11 @@ const appClasses = createUseStyles({
 
 function App() {
   const classes = appClasses();
-  return <div className={classes.app}></div>;
+  return (
+    <div className={classes.app}>
+      <TestPage/>
+    </div>
+  );
 }
 
 export default App;
