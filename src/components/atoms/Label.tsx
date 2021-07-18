@@ -4,13 +4,13 @@ const labelClasses = createUseStyles({
   label: {},
 });
 
-const Label = (props) => {
+type LabelProps = {
+  text: string;
+};
+
+const Label = (props: LabelProps) => {
   const classes = labelClasses();
-  return (
-    <label className={classes.label} for={props.forId}>
-      {props.text}
-    </label>
-  );
+  return <label className={classes.label}>{props.text}</label>;
 };
 
 export default Label;

@@ -4,7 +4,11 @@ const buttonClasses = createUseStyles({
   button: {},
 });
 
-const Button = (props) => {
+type ButtonProps = {
+  text: string;
+};
+
+const Button = (props: ButtonProps) => {
   const classes = buttonClasses();
   return <button className={classes.button}>{props.text}</button>;
 };
