@@ -4,9 +4,9 @@ const iconClasses = createUseStyles({
   icon: {},
 });
 
-function Icon(props) {
+const Icon = (props) => {
   const classes = iconClasses();
   return <i className={`${classes.icon} ${props.icon}`} />;
-}
+};
 
 export default Icon;

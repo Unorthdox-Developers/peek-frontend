@@ -4,7 +4,7 @@ const textInputClasses = createUseStyles({
   textInput: {},
 });
 
-function TextInput(props) {
+const TextInput = (props) => {
   const classes = textInputClasses();
   return (
     <input
@@ -14,6 +14,6 @@ function TextInput(props) {
       placeholder={props.placeholder}
     />
   );
-}
+};
 
 export default TextInput;
