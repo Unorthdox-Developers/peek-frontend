@@ -5,12 +5,12 @@ const listClasses = createUseStyles({
   listItem: {},
 });
 
-type UnorderedListProps = {
+export interface IUnorderedListProps {
   items: Array<any>;
   placeholder: string;
-};
+}
 
-const UnorderedList = (props: UnorderedListProps) => {
+const UnorderedList = (props: IUnorderedListProps) => {
   const classes = listClasses();
   const listItems = props.items.map((item) => (
     <li className={classes.listItem} key={item.key}>
