@@ -4,7 +4,12 @@ const textInputClasses = createUseStyles({
   textInput: {},
 });
 
-const TextInput = (props) => {
+export interface ITextInputProps {
+  value: string;
+  placeholder: string;
+}
+
+const TextInput = (props: ITextInputProps) => {
   const classes = textInputClasses();
   return (
     <input

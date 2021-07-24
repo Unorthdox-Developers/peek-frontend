@@ -5,14 +5,19 @@ const listClasses = createUseStyles({
   listItem: {},
 });
 
-const UnorderedList = (props) => {
+export interface IUnorderedListProps {
+  items: Array<any>;
+  placeholder: string;
+}
+
+const UnorderedList = (props: IUnorderedListProps) => {
   const classes = listClasses();
   const listItems = props.items.map((item) => (
     <li className={classes.listItem} key={item.key}>
       {item}
     </li>
   ));
-  return <ul className={classes.label}>{listItems}</ul>;
+  return <ul className={classes.list}>{listItems}</ul>;
 };
 
 export default UnorderedList;

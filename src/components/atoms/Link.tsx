@@ -4,10 +4,15 @@ const linkClasses = createUseStyles({
   link: {},
 });
 
-const Link = (props) => {
+export interface ILinkProps {
+  text: string;
+  to: string;
+}
+
+const Link = (props: ILinkProps) => {
   const classes = linkClasses();
   return (
-    <a className={classes.label} href={props.to}>
+    <a className={classes.link} href={props.to}>
       {props.text}
     </a>
   );
