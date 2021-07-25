@@ -1,14 +1,6 @@
-const { alias } = require('react-app-rewire-alias');
+const { alias, aliasJest, configPaths } = require('react-app-rewire-alias');
 
-module.exports = function override(config) {
-  alias({
-    '@pages': 'src/pages',
-    '@templates': 'src/templates',
-    '@components': 'src/components',
-    '@atoms': 'src/components/atoms',
-    '@molecules': 'src/components/molecules',
-    '@organisms': 'src/components/organisms',
-  })(config);
+const aliasMap = configPaths('./tsconfig.paths.json');
 
-  return config;
-};
+module.exports = alias(aliasMap);
+module.exports.jest = aliasJest(aliasMap);

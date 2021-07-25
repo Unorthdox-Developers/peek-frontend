@@ -1,3 +1,4 @@
+import MainPage from '@pages/MainPage';
 import { createUseStyles } from 'react-jss';
 
 const appClasses = createUseStyles({
@@ -9,7 +10,11 @@ const appClasses = createUseStyles({
 
 const App = () => {
   const classes = appClasses();
-  return <div className={classes.app}></div>;
+  return (
+    <div className={classes.app}>
+      <MainPage />
+    </div>
+  );
 };
 
 export default App;
