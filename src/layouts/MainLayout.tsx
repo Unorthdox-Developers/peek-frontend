@@ -1,7 +1,10 @@
 import { createUseStyles } from 'react-jss';
 
 const MainLayoutClasses = createUseStyles({
-  container: {},
+  container: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
   search: {},
 });
 
