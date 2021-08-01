@@ -47,5 +47,20 @@
   },
   "prettier": {
     "singleQuote": true
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./jest-setup.ts"
+    ],
+    "verbose": true,
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ],
+    "coverageReporters": [
+      "text-summary"
+    ]
   }
 }

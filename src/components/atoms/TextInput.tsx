@@ -9,16 +9,19 @@ export interface ITextInputProps {
   placeholder: string;
 }
 
+export class TextInputProps implements ITextInputProps {
+  value: string = '';
+  placeholder: string = '';
+
+  constructor(value: string, placeholder: string) {
+    this.value = value;
+    this.placeholder = placeholder;
+  }
+}
+
 const TextInput = (props: ITextInputProps) => {
   const classes = textInputClasses();
-  return (
-    <input
-      type="text"
-      className={classes.textInput}
-      value={props.value}
-      placeholder={props.placeholder}
-    />
-  );
+  return <input type="text" className={classes.textInput} {...props} />;
 };
 
 export default TextInput;
