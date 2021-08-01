@@ -1,11 +1,5 @@
 import Button, { ButtonProps } from '@atoms/Button';
 import TextInput, { TextInputProps } from '@atoms/TextInput';
-// import { createUseStyles } from 'react-jss';
-
-// const searchInputClasses = createUseStyles({
-//   input: {},
-//   button: {},
-// });
 
 export interface ISearchInputProps {
   value: string;
@@ -26,7 +20,6 @@ export class SearchInputProps implements ISearchInputProps {
 }
 
 const SearchInput = (props: ISearchInputProps) => {
-  // const classes = searchInputClasses();
   const textInputProps = new TextInputProps(props.value, props.placeholder);
   const buttonProps = new ButtonProps(props.buttonText);
   return (
