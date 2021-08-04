@@ -1,13 +1,13 @@
 import SearchInput, { SearchInputProps } from '@molecules/SearchInput';
 import { useAppSelector, useAppDispatch } from '@redux/hooks';
-import { assignValue } from '@redux/feature/main/main';
+import { setSearchText } from '@redux/feature/repositorySearch';
 import { Strings } from 'src/config/constants';
 
 export type RepositorySearchProps = {};
 
 const RepositorySearch = (props: RepositorySearchProps) => {
   const searchValue = useAppSelector(
-    (state) => state.main.repositorySearchValue
+    (state) => state.repositorySearch.searchText
   );
   const dispatch = useAppDispatch();
 
@@ -15,7 +15,7 @@ const RepositorySearch = (props: RepositorySearchProps) => {
     value: searchValue,
     placeholder: Strings.defaults.repositorySearch.placeholder,
     buttonText: Strings.defaults.repositorySearch.buttonText,
-    changeFn: (text: string) => dispatch(assignValue(text)),
+    changeFn: (text: string) => dispatch(setSearchText(text)),
   };
   return (
     <div>

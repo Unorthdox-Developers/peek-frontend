@@ -4,7 +4,7 @@ import { useAppSelector } from '@redux/hooks';
 
 const MainPage = () => {
   const searchValue = useAppSelector(
-    (state) => state.main.repositorySearchValue
+    (state) => state.repositorySearch.searchText
   );
   return (
     <div>

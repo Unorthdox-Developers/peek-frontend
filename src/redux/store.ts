@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { mainSlice } from './feature/main/main';
+import { repositorySearchSlice } from './feature/repositorySearch';
 
 export const store = configureStore({
   reducer: {
-    main: mainSlice.reducer,
+    repositorySearch: repositorySearchSlice.reducer,
   },
 });
 
