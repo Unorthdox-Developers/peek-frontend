@@ -1,10 +1,11 @@
 import RepositorySearch from '@organisms/RepositorySearch';
 import MainLayout from '@layouts/MainLayout';
 import { useAppSelector } from '@redux/hooks';
+import { selectRepositorySearchValue } from '@redux/feature/repositorySearch';
 
 const MainPage = () => {
-  const searchValue = useAppSelector(
-    (state) => state.repositorySearch.searchText
+  const searchValue = useAppSelector((state) =>
+    selectRepositorySearchValue(state)
   );
   return (
     <div>
