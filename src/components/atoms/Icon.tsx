@@ -4,11 +4,11 @@ const iconClasses = createUseStyles({
   icon: {},
 });
 
-export interface IIconProps {
+export type IconProps = {
   icon: string;
-}
+};
 
-const Icon = (props: IIconProps) => {
+const Icon = (props: IconProps) => {
   const classes = iconClasses();
   return <i className={`${classes.icon} ${props.icon}`} />;
 };

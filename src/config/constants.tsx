@@ -1,3 +1,8 @@
 export const Strings = {
-  defaults: {},
+  defaults: {
+    repositorySearch: {
+      placeholder: 'Search Repository',
+      buttonText: 'Search',
+    },
+  },
 };

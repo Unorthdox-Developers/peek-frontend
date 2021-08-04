@@ -1,10 +1,16 @@
 import RepositorySearch from '@organisms/RepositorySearch';
 import MainLayout from '@layouts/MainLayout';
+import { useAppSelector } from '@redux/hooks';
 
-const MainPage = (): JSX.Element => {
-  const searchValue = '';
+const MainPage = () => {
+  const searchValue = useAppSelector(
+    (state) => state.main.repositorySearchValue
+  );
   return (
-    <MainLayout searchComponent={<RepositorySearch value={searchValue} />} />
+    <div>
+      <MainLayout searchComponent={<RepositorySearch />} />
+      <h1>{searchValue}</h1>
+    </div>
   );
 };
 

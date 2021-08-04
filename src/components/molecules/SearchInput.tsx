@@ -1,27 +1,20 @@
 import Button, { ButtonProps } from '@atoms/Button';
 import TextInput, { TextInputProps } from '@atoms/TextInput';
 
-export interface ISearchInputProps {
+export type SearchInputProps = {
   value: string;
   placeholder: string;
   buttonText: string;
-}
+  changeFn: (text: string) => void;
+};
 
-export class SearchInputProps implements ISearchInputProps {
-  value: string = '';
-  placeholder: string = 'Search';
-  buttonText: string = 'Search';
-
-  constructor(value: string, placeholder: string, buttonText: string) {
-    this.value = value;
-    this.placeholder = placeholder;
-    this.buttonText = buttonText;
-  }
-}
-
-const SearchInput = (props: ISearchInputProps) => {
-  const textInputProps = new TextInputProps(props.value, props.placeholder);
-  const buttonProps = new ButtonProps(props.buttonText);
+const SearchInput = (props: SearchInputProps) => {
+  const textInputProps: TextInputProps = {
+    value: props.value,
+    placeholder: props.placeholder,
+    changeFn: props.changeFn,
+  };
+  const buttonProps: ButtonProps = { text: props.buttonText };
   return (
     <div>
       <TextInput {...textInputProps} />

@@ -8,19 +8,11 @@ const MainLayoutClasses = createUseStyles({
   search: {},
 });
 
-export interface IMainLayoutProps {
+export type MainLayoutProps = {
   searchComponent: JSX.Element;
-}
+};
 
-export class MainLayoutProps implements IMainLayoutProps {
-  searchComponent: JSX.Element = (<div></div>);
-
-  constructor(searchComponent: JSX.Element) {
-    this.searchComponent = searchComponent;
-  }
-}
-
-const MainLayout = (props: IMainLayoutProps): JSX.Element => {
+const MainLayout = (props: MainLayoutProps) => {
   const classes = MainLayoutClasses();
   return (
     <div className={classes.container}>
