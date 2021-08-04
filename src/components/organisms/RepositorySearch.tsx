@@ -15,7 +15,7 @@ const RepositorySearch = (props: RepositorySearchProps) => {
     value: searchValue,
     placeholder: Strings.default.repositorySearch.placeholder,
     buttonText: Strings.default.repositorySearch.buttonText,
-    dispatchOnChange: (text: string) => dispatch(setSearchText(text)),
+    onChangeFunction: (text: string) => dispatch(setSearchText(text)),
   };
   return (
     <div>

@@ -7,14 +7,14 @@ const textInputClasses = createUseStyles({
 export type TextInputProps = {
   value: string;
   placeholder: string;
-  dispatchOnChange: (text: string) => void;
+  onChangeFunction: (text: string) => void;
 };
 
 const TextInput = (props: TextInputProps) => {
   const classes = textInputClasses();
-  const { dispatchOnChange, ...restProps } = props;
+  const { onChangeFunction, ...restProps } = props;
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    props.dispatchOnChange(event.target.value);
+    props.onChangeFunction(event.target.value);
   };
   return (
     <input
