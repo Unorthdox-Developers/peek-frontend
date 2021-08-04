@@ -1,6 +1,7 @@
+import { ReactNode } from 'react';
 import { createUseStyles } from 'react-jss';
 
-const MainLayoutClasses = createUseStyles({
+const mainLayoutClasses = createUseStyles({
   container: {
     display: 'flex',
     justifyContent: 'center',
@@ -9,14 +10,16 @@ const MainLayoutClasses = createUseStyles({
 });
 
 export type MainLayoutProps = {
-  searchComponent: JSX.Element;
+  children: {
+    search: ReactNode;
+  };
 };
 
 const MainLayout = (props: MainLayoutProps) => {
-  const classes = MainLayoutClasses();
+  const classes = mainLayoutClasses();
   return (
     <div className={classes.container}>
-      <div className={classes.search}>{props.searchComponent}</div>
+      <div className={classes.search}>{props.children.search}</div>
     </div>
   );
 };

@@ -5,14 +5,14 @@ export type SearchInputProps = {
   value: string;
   placeholder: string;
   buttonText: string;
-  changeFn: (text: string) => void;
+  dispatchOnChange: (text: string) => void;
 };
 
 const SearchInput = (props: SearchInputProps) => {
   const textInputProps: TextInputProps = {
     value: props.value,
     placeholder: props.placeholder,
-    changeFn: props.changeFn,
+    dispatchOnChange: props.dispatchOnChange,
   };
   const buttonProps: ButtonProps = { text: props.buttonText };
   return (

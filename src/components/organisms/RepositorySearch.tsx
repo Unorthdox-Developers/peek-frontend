@@ -13,9 +13,9 @@ const RepositorySearch = (props: RepositorySearchProps) => {
 
   const searchInputProps: SearchInputProps = {
     value: searchValue,
-    placeholder: Strings.defaults.repositorySearch.placeholder,
-    buttonText: Strings.defaults.repositorySearch.buttonText,
-    changeFn: (text: string) => dispatch(setSearchText(text)),
+    placeholder: Strings.default.repositorySearch.placeholder,
+    buttonText: Strings.default.repositorySearch.buttonText,
+    dispatchOnChange: (text: string) => dispatch(setSearchText(text)),
   };
   return (
     <div>

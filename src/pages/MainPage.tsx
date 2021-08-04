@@ -9,7 +9,7 @@ const MainPage = () => {
   );
   return (
     <div>
-      <MainLayout searchComponent={<RepositorySearch />} />
+      <MainLayout>{{ search: <RepositorySearch /> }}</MainLayout>
       <h1>{searchValue}</h1>
     </div>
   );
