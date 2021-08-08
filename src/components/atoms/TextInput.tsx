@@ -1,8 +1,11 @@
 import { createUseStyles } from 'react-jss';
 
-const textInputClasses = createUseStyles({
-  textInput: {},
-});
+const textInputClasses = createUseStyles(
+  {
+    'text-input': {},
+  },
+  { name: 'atom' }
+);
 
 export type TextInputProps = {
   value: string;
@@ -11,7 +14,7 @@ export type TextInputProps = {
 };
 
 const TextInput = (props: TextInputProps) => {
-  const classes = textInputClasses();
+  const styles = textInputClasses();
   const { onChangeFunction, ...restProps } = props;
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.onChangeFunction(event.target.value);
@@ -19,7 +22,7 @@ const TextInput = (props: TextInputProps) => {
   return (
     <input
       type="text"
-      className={classes.textInput}
+      className={styles['text-input']}
       {...restProps}
       onChange={handleChange}
     />

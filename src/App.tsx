@@ -1,5 +1,7 @@
 import MainPage from '@pages/MainPage';
-import { createUseStyles } from 'react-jss';
+import { getCurrentTheme } from '@redux/feature/theme';
+import { useAppSelector } from '@redux/hooks';
+import { createUseStyles, JssProvider, ThemeProvider } from 'react-jss';
 
 const appClasses = createUseStyles({
   app: {
@@ -10,10 +12,15 @@ const appClasses = createUseStyles({
 
 const App = () => {
   const classes = appClasses();
+  const currentTheme = useAppSelector((state) => getCurrentTheme(state));
   return (
-    <div className={classes.app}>
-      <MainPage />
-    </div>
+    <JssProvider>
+      <ThemeProvider theme={currentTheme}>
+        <div className={classes.app}>
+          <MainPage />
+        </div>
+      </ThemeProvider>
+    </JssProvider>
   );
 };
 

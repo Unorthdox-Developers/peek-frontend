@@ -1,13 +1,16 @@
 import { ReactNode } from 'react';
 import { createUseStyles } from 'react-jss';
 
-const mainLayoutClasses = createUseStyles({
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
+const mainLayoutClasses = createUseStyles(
+  {
+    container: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
+    search: {},
   },
-  search: {},
-});
+  { name: 'layout' }
+);
 
 export type MainLayoutProps = {
   children: {
