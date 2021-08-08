@@ -1,19 +1,22 @@
 import SearchInput, { SearchInputProps } from '@molecules/SearchInput';
+import { useAppSelector, useAppDispatch } from '@redux/hooks';
+import { setSearchText } from '@redux/feature/repositorySearch';
+import { Strings } from 'src/config/constants';
 
-export interface IRepositorySearchProps {
-  value: string;
-}
+export type RepositorySearchProps = {};
 
-export class RepositorySearchProps implements IRepositorySearchProps {
-  value: string = '';
-}
-
-const RepositorySearch = (props: IRepositorySearchProps) => {
-  const searchInputProps = new SearchInputProps(
-    props.value,
-    'Search Repository',
-    'Search'
+const RepositorySearch = (props: RepositorySearchProps) => {
+  const searchValue = useAppSelector(
+    (state) => state.repositorySearch.searchText
   );
+  const dispatch = useAppDispatch();
+
+  const searchInputProps: SearchInputProps = {
+    value: searchValue,
+    placeholder: Strings.default.repositorySearch.placeholder,
+    buttonText: Strings.default.repositorySearch.buttonText,
+    onChangeFunction: (text: string) => dispatch(setSearchText(text)),
+  };
   return (
     <div>
       <SearchInput {...searchInputProps} />

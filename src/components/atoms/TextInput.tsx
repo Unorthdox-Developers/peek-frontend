@@ -4,24 +4,26 @@ const textInputClasses = createUseStyles({
   textInput: {},
 });
 
-export interface ITextInputProps {
+export type TextInputProps = {
   value: string;
   placeholder: string;
-}
+  onChangeFunction: (text: string) => void;
+};
 
-export class TextInputProps implements ITextInputProps {
-  value: string = '';
-  placeholder: string = '';
-
-  constructor(value: string, placeholder: string) {
-    this.value = value;
-    this.placeholder = placeholder;
-  }
-}
-
-const TextInput = (props: ITextInputProps) => {
+const TextInput = (props: TextInputProps) => {
   const classes = textInputClasses();
-  return <input type="text" className={classes.textInput} {...props} />;
+  const { onChangeFunction, ...restProps } = props;
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    props.onChangeFunction(event.target.value);
+  };
+  return (
+    <input
+      type="text"
+      className={classes.textInput}
+      {...restProps}
+      onChange={handleChange}
+    />
+  );
 };
 
 export default TextInput;

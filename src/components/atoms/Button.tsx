@@ -4,19 +4,11 @@ const buttonClasses = createUseStyles({
   button: {},
 });
 
-export interface IButtonProps {
+export type ButtonProps = {
   text: string;
-}
+};
 
-export class ButtonProps implements IButtonProps {
-  text: string = '';
-
-  constructor(text: string) {
-    this.text = text;
-  }
-}
-
-const Button = (props: IButtonProps) => {
+const Button = (props: ButtonProps) => {
   const classes = buttonClasses();
   return <button className={classes.button}>{props.text}</button>;
 };
