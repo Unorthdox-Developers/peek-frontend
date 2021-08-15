@@ -1,44 +1,48 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '@redux/store';
 import { repositorySearchAsyncThunks } from './asyncThunks';
+import { AsyncTrunkRequestStatus } from 'src/config/constants';
 
 type RepositorySearchState = {
   searchText: string;
   searchResults: [];
-  searchStatus: string;
+  searchStatus: AsyncTrunkRequestStatus;
 };
 
 const initialState: RepositorySearchState = {
   searchText: '',
   searchResults: [],
-  searchStatus: 'init',
+  searchStatus: AsyncTrunkRequestStatus.Initial,
 };
 
 export const repositorySearchSlice = createSlice({
   name: 'repositorySearch',
   initialState,
   reducers: {
-    setSearchText: (state, action: PayloadAction<string>) => {
+    setSearchText: (
+      state: RepositorySearchState,
+      action: PayloadAction<string>
+    ) => {
       state.searchText = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(
       repositorySearchAsyncThunks.postRepositorySearch.pending,
-      (state, action) => {
-        state.searchStatus = 'pending';
+      (state: RepositorySearchState, action) => {
+        state.searchStatus = AsyncTrunkRequestStatus.Pending;
       }
     );
     builder.addCase(
       repositorySearchAsyncThunks.postRepositorySearch.rejected,
-      (state, action) => {
-        state.searchStatus = 'rejected';
+      (state: RepositorySearchState, action) => {
+        state.searchStatus = AsyncTrunkRequestStatus.Rejected;
       }
     );
     builder.addCase(
       repositorySearchAsyncThunks.postRepositorySearch.fulfilled,
-      (state, action) => {
-        state.searchStatus = 'fulfilled';
+      (state: RepositorySearchState, action) => {
+        state.searchStatus = AsyncTrunkRequestStatus.Fulfilled;
       }
     );
   },

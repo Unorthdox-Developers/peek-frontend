@@ -4,7 +4,7 @@ import { ApiService } from 'src/api/api';
 
 export const repositorySearchAsyncThunks = {
   postRepositorySearch: createAsyncThunk<
-    any,
+    any, // type of return value (response.data)
     string,
     {
       dispatch: AppDispatch;

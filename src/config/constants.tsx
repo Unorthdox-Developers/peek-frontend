@@ -6,3 +6,10 @@ export const Strings = {
     },
   },
 };
+
+export enum AsyncTrunkRequestStatus {
+  Initial = 'initial',
+  Pending = 'pending',
+  Fulfilled = 'fulfilled',
+  Rejected = 'rejected',
+}
