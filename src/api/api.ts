@@ -6,7 +6,6 @@ export const ApiService = {
       const response = await axios.post('https://httpbin.org/post', {
         repositoryName,
       });
-      console.log('response', response);
       return response;
     },
   },

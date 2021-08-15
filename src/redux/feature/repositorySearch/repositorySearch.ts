@@ -23,7 +23,6 @@ export const repositorySearchSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(
       repositorySearchAsyncThunks.postRepositorySearch.pending,
       (state, action) => {
@@ -40,9 +39,6 @@ export const repositorySearchSlice = createSlice({
       repositorySearchAsyncThunks.postRepositorySearch.fulfilled,
       (state, action) => {
         state.searchStatus = 'fulfilled';
-        // Add user to the state array
-        console.log('state', state);
-        console.log('action', action);
       }
     );
   },
