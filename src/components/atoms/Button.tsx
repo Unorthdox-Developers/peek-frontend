@@ -6,11 +6,20 @@ const buttonClasses = createUseStyles({
 
 export type ButtonProps = {
   text: string;
+  onClickFunction: () => void;
 };
 
 const Button = (props: ButtonProps) => {
   const classes = buttonClasses();
-  return <button className={classes.button}>{props.text}</button>;
+  const { onClickFunction, text } = props;
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    onClickFunction();
+  };
+  return (
+    <button className={classes.button} onClick={handleClick}>
+      {text}
+    </button>
+  );
 };
 
 export default Button;

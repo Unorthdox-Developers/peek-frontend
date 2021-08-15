@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { repositorySearchSlice } from './feature/repositorySearch';
+import { repositorySearchSlice } from './feature/repositorySearch/repositorySearch';
 import { logger } from 'redux-logger';
-
 export const store = configureStore({
   reducer: {
     repositorySearch: repositorySearchSlice.reducer,
