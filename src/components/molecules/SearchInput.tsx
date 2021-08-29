@@ -6,6 +6,7 @@ export type SearchInputProps = {
   placeholder: string;
   buttonText: string;
   onChangeFunction: (text: string) => void;
+  onClickFunction: () => void;
 };
 
 const SearchInput = (props: SearchInputProps) => {
@@ -14,7 +15,10 @@ const SearchInput = (props: SearchInputProps) => {
     placeholder: props.placeholder,
     onChangeFunction: props.onChangeFunction,
   };
-  const buttonProps: ButtonProps = { text: props.buttonText };
+  const buttonProps: ButtonProps = {
+    text: props.buttonText,
+    onClickFunction: props.onClickFunction,
+  };
   return (
     <div>
       <TextInput {...textInputProps} />

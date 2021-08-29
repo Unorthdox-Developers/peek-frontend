@@ -14,7 +14,7 @@ const TextInput = (props: TextInputProps) => {
   const classes = textInputClasses();
   const { onChangeFunction, ...restProps } = props;
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    props.onChangeFunction(event.target.value);
+    onChangeFunction(event.target.value);
   };
   return (
     <input
