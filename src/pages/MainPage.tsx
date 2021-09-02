@@ -1,18 +1,19 @@
-import RepositorySearchPage from '@pages/RepositorySearchPage';
-import RepositoryDashboardPage from '@pages/RepositoryDashboardPage';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { PublicRoutes } from '../config/routes';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 const MainPage = () => {
   return (
     <div>
       <BrowserRouter>
         <Switch>
-          <Route path="/repositorysearch">
-            <RepositorySearchPage />
+          <Route exact path="/">
+            <Redirect to={PublicRoutes[0].path} />
           </Route>
-          <Route path="/repositorydashboard">
-            <RepositoryDashboardPage />
-          </Route>
+          {PublicRoutes.map((route, i) => (
+            <Route key={i} path={route.path}>
+              {route.component}
+            </Route>
+          ))}
         </Switch>
       </BrowserRouter>
     </div>
