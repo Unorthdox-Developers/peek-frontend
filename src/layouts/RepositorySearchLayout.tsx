@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { createUseStyles } from 'react-jss';
 
-const mainLayoutClasses = createUseStyles({
+const repositorySearchLayoutClasses = createUseStyles({
   container: {
     display: 'flex',
     justifyContent: 'center',
@@ -9,14 +9,14 @@ const mainLayoutClasses = createUseStyles({
   search: {},
 });
 
-export type MainLayoutProps = {
+export type RepositorySearchLayoutProps = {
   children: {
     search: ReactNode;
   };
 };
 
-const MainLayout = (props: MainLayoutProps) => {
-  const classes = mainLayoutClasses();
+const RepositorySearchLayout = (props: RepositorySearchLayoutProps) => {
+  const classes = repositorySearchLayoutClasses();
   return (
     <div className={classes.container}>
       <div className={classes.search}>{props.children.search}</div>
@@ -24,4 +24,4 @@ const MainLayout = (props: MainLayoutProps) => {
   );
 };
 
-export default MainLayout;
+export default RepositorySearchLayout;
