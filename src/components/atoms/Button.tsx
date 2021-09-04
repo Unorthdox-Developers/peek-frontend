@@ -1,3 +1,4 @@
+import { ButtonBase } from '@material-ui/core';
 import { createUseStyles } from 'react-jss';
 
 const buttonClasses = createUseStyles({
@@ -16,9 +17,9 @@ const Button = (props: ButtonProps) => {
     onClickFunction();
   };
   return (
-    <button className={classes.button} onClick={handleClick}>
+    <ButtonBase classes={{ root: classes.button }} onClick={handleClick}>
       {text}
-    </button>
+    </ButtonBase>
   );
 };
 

@@ -1,3 +1,4 @@
+import { InputBase } from '@material-ui/core';
 import { createUseStyles } from 'react-jss';
 
 const textInputClasses = createUseStyles({
@@ -17,9 +18,9 @@ const TextInput = (props: TextInputProps) => {
     onChangeFunction(event.target.value);
   };
   return (
-    <input
+    <InputBase
       type="text"
-      className={classes.textInput}
+      classes={{ root: classes.textInput }}
       {...restProps}
       onChange={handleChange}
     />
