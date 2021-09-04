@@ -1,9 +1,4 @@
 import { ButtonBase } from '@material-ui/core';
-import { createUseStyles } from 'react-jss';
-
-const buttonClasses = createUseStyles({
-  button: {},
-});
 
 export type ButtonProps = {
   text: string;
@@ -11,16 +6,10 @@ export type ButtonProps = {
 };
 
 const Button = (props: ButtonProps) => {
-  const classes = buttonClasses();
-  const { onClickFunction, text } = props;
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    onClickFunction();
+    props.onClickFunction();
   };
-  return (
-    <ButtonBase classes={{ root: classes.button }} onClick={handleClick}>
-      {text}
-    </ButtonBase>
-  );
+  return <ButtonBase onClick={handleClick}>{props.text}</ButtonBase>;
 };
 
 export default Button;

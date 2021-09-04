@@ -1,19 +1,16 @@
+import { ThemeProvider } from '@material-ui/core';
 import MainPage from '@pages/MainPage';
-import { createUseStyles } from 'react-jss';
-
-const appClasses = createUseStyles({
-  app: {
-    width: '100%',
-    height: '100%',
-  },
-});
+import { getCurrentTheme } from '@redux/feature/theme';
+import { useAppSelector } from '@redux/hooks';
 
 const App = () => {
-  const classes = appClasses();
+  const currentTheme = useAppSelector((state) => getCurrentTheme(state));
   return (
-    <div className={classes.app}>
-      <MainPage />
-    </div>
+    <ThemeProvider theme={{ ...currentTheme }}>
+      <div>
+        <MainPage />
+      </div>
+    </ThemeProvider>
   );
 };
 

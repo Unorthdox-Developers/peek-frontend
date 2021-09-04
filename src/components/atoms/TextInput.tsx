@@ -1,9 +1,4 @@
 import { InputBase } from '@material-ui/core';
-import { createUseStyles } from 'react-jss';
-
-const textInputClasses = createUseStyles({
-  textInput: {},
-});
 
 export type TextInputProps = {
   value: string;
@@ -12,19 +7,11 @@ export type TextInputProps = {
 };
 
 const TextInput = (props: TextInputProps) => {
-  const classes = textInputClasses();
   const { onChangeFunction, ...restProps } = props;
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChangeFunction(event.target.value);
   };
-  return (
-    <InputBase
-      type="text"
-      classes={{ root: classes.textInput }}
-      {...restProps}
-      onChange={handleChange}
-    />
-  );
+  return <InputBase type="text" {...restProps} onChange={handleChange} />;
 };
 
 export default TextInput;
