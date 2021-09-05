@@ -1,16 +1,9 @@
-import { createUseStyles } from 'react-jss';
-
-const iconClasses = createUseStyles({
-  icon: {},
-});
-
 export type IconProps = {
   icon: string;
 };
 
 const Icon = (props: IconProps) => {
-  const classes = iconClasses();
-  return <i className={`${classes.icon} ${props.icon}`} />;
+  return <i className={props.icon} />;
 };
 
 export default Icon;

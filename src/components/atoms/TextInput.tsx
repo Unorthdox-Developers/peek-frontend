@@ -1,27 +1,45 @@
-import { createUseStyles } from 'react-jss';
+import { createStyles, InputBase, makeStyles, Theme } from '@material-ui/core';
 
-const textInputClasses = createUseStyles({
-  textInput: {},
-});
+const useStyles = makeStyles(
+  (theme: Theme) =>
+    createStyles({
+      root: {
+        color: theme.palette.text.primary,
+      },
+    }),
+  { name: 'atom-button' }
+);
 
 export type TextInputProps = {
   value: string;
   placeholder: string;
   onChangeFunction: (text: string) => void;
+  onEnterPressedFunction: () => void;
 };
 
 const TextInput = (props: TextInputProps) => {
-  const classes = textInputClasses();
-  const { onChangeFunction, ...restProps } = props;
+  const classes = useStyles();
+  const { onChangeFunction, onEnterPressedFunction, ...restProps } = props;
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChangeFunction(event.target.value);
   };
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    console.log('event', event);
+    switch (event.key.toLowerCase()) {
+      case 'enter':
+        onEnterPressedFunction();
+        break;
+      default:
+        break;
+    }
+  };
   return (
-    <input
+    <InputBase
+      classes={{ root: classes.root }}
       type="text"
-      className={classes.textInput}
       {...restProps}
       onChange={handleChange}
+      onKeyPress={handleKeyPress}
     />
   );
 };

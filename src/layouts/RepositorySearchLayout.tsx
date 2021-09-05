@@ -1,25 +1,37 @@
+import { createStyles, makeStyles } from '@material-ui/core';
 import { ReactNode } from 'react';
-import { createUseStyles } from 'react-jss';
 
-const repositorySearchLayoutClasses = createUseStyles({
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  search: {},
-});
+const useStyles = makeStyles(() =>
+  createStyles({
+    container: {
+      display: 'flex',
+      alignItems: 'center',
+      flexDirection: 'column',
+      minHeight: '100%',
+    },
+    themeSwitch: {
+      display: 'none',
+    },
+    search: {},
+    results: {},
+  })
+);
 
 export type RepositorySearchLayoutProps = {
   children: {
+    themeSwitch: ReactNode;
     search: ReactNode;
+    results: ReactNode;
   };
 };
 
 const RepositorySearchLayout = (props: RepositorySearchLayoutProps) => {
-  const classes = repositorySearchLayoutClasses();
+  const classes = useStyles();
   return (
     <div className={classes.container}>
-      <div className={classes.search}>{props.children.search}</div>
+      <div className={classes.themeSwitch}>{props.children.themeSwitch}</div>
+      <div>{props.children.search}</div>
+      <div>{props.children.results}</div>
     </div>
   );
 };

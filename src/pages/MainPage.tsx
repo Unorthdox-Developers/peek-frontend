@@ -1,9 +1,22 @@
 import { PublicRoutes } from '../config/routes';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { makeStyles, Theme, createStyles, Container } from '@material-ui/core';
+
+const useStyles = makeStyles(
+  (theme: Theme) =>
+    createStyles({
+      root: {
+        backgroundColor: theme.palette.background.default,
+        minHeight: '100%',
+      },
+    }),
+  { name: 'app' }
+);
 
 const MainPage = () => {
+  const classes = useStyles();
   return (
-    <div>
+    <Container classes={{ root: classes.root }}>
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
@@ -16,7 +29,7 @@ const MainPage = () => {
           ))}
         </Switch>
       </BrowserRouter>
-    </div>
+    </Container>
   );
 };
 

@@ -1,8 +1,14 @@
-import { createUseStyles } from 'react-jss';
+import { ButtonBase, createStyles, makeStyles, Theme } from '@material-ui/core';
 
-const buttonClasses = createUseStyles({
-  button: {},
-});
+const useStyles = makeStyles(
+  (theme: Theme) =>
+    createStyles({
+      root: {
+        ...theme.typography.button,
+      },
+    }),
+  { name: 'atom-button' }
+);
 
 export type ButtonProps = {
   text: string;
@@ -10,15 +16,15 @@ export type ButtonProps = {
 };
 
 const Button = (props: ButtonProps) => {
-  const classes = buttonClasses();
-  const { onClickFunction, text } = props;
+  const classes = useStyles();
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    onClickFunction();
+    props.onClickFunction();
   };
   return (
-    <button className={classes.button} onClick={handleClick}>
-      {text}
-    </button>
+    <ButtonBase classes={{ root: classes.root }} onClick={handleClick}>
+      {props.text}
+    </ButtonBase>
   );
 };
 
