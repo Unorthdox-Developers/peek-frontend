@@ -4,11 +4,11 @@ import { createTheme } from '@material-ui/core/styles';
 export const lightTheme: Theme = createTheme({
   palette: {
     text: {
-      primary: 'rgba(0, 0, 0, 0.8)',
+      primary: 'black',
     },
     background: {
-      paper: 'rgba(250, 250, 250, 1)',
-      default: 'rgba(250, 250, 250, 1)',
+      paper: '#F2F2F2',
+      default: '#FAFAFA',
     },
   },
 });
@@ -16,11 +16,11 @@ export const lightTheme: Theme = createTheme({
 export const darkTheme: Theme = createTheme({
   palette: {
     text: {
-      primary: 'rgba(153, 0, 102, 1)',
+      primary: 'white',
     },
     background: {
-      paper: 'rgba(, 0, 0, 1)',
-      default: 'rgba(0, 0, 0, 1)',
+      paper: '#002626',
+      default: '#001A1A',
     },
   },
 });

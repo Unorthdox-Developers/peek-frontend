@@ -1,28 +1,28 @@
-import { createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import type { RootState } from '@redux/store';
-import { lightTheme } from 'src/styles/theme';
-import { Theme } from '@material-ui/core';
+import { darkTheme, lightTheme } from 'src/styles/theme';
 
 type ThemeState = {
-  current: Theme;
+  dark: boolean;
 };
 
 const initialState: ThemeState = {
-  current: lightTheme,
+  dark: false,
 };
 
 export const themeSlice = createSlice({
   name: 'theme',
   initialState,
   reducers: {
-    setTheme: (state, action: PayloadAction<Draft<Theme>>) => {
-      state.current = action.payload;
+    switchTheme: (state) => {
+      state.dark = !state.dark;
     },
   },
 });
 
-export const { setTheme } = themeSlice.actions;
+export const { switchTheme } = themeSlice.actions;
 
-export const getCurrentTheme = (state: RootState) => state.theme.current;
+export const getCurrentTheme = (state: RootState) =>
+  state.theme.dark ? darkTheme : lightTheme;
 
 export default themeSlice.reducer;

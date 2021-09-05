@@ -5,7 +5,7 @@ import { AsyncTrunkRequestStatus } from 'src/config/constants';
 
 type RepositorySearchState = {
   searchText: string;
-  searchResults: [];
+  searchResults: any[];
   searchStatus: AsyncTrunkRequestStatus;
 };
 
@@ -43,6 +43,7 @@ export const repositorySearchSlice = createSlice({
       repositorySearchAsyncThunks.postRepositorySearch.fulfilled,
       (state: RepositorySearchState, action) => {
         state.searchStatus = AsyncTrunkRequestStatus.Fulfilled;
+        state.searchResults = [...action.payload];
       }
     );
   },
@@ -55,5 +56,8 @@ export const getRepositorySearchValue = (state: RootState) =>
 
 export const getRepositorySearchStatus = (state: RootState) =>
   state.repositorySearch.searchStatus;
+
+export const getRepositorySearchResults = (state: RootState) =>
+  state.repositorySearch.searchResults;
 
 export default repositorySearchSlice.reducer;

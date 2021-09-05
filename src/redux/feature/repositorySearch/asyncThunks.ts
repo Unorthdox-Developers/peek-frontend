@@ -13,19 +13,14 @@ export const repositorySearchAsyncThunks = {
   >(
     'repositorySearch/searchStatus',
     async (repositoryName: string, thunkAPI) => {
-      const response = await ApiService.repositoryApi.searchForRepository(
-        repositoryName
-      );
-      return response.data;
-    },
-    {
-      condition: (repositoryName: string, { getState, extra }) => {
-        const { repositorySearch } = getState();
-        const { searchText, searchStatus } = repositorySearch;
-        if (repositoryName === searchText && searchStatus === 'pending') {
-          return false;
-        }
-      },
+      if (repositoryName) {
+        const response = await ApiService.repositoryApi.searchForRepository(
+          repositoryName
+        );
+        return response.data.items;
+      } else {
+        return [];
+      }
     }
   ),
 };

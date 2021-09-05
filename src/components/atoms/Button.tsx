@@ -1,4 +1,14 @@
-import { ButtonBase } from '@material-ui/core';
+import { ButtonBase, createStyles, makeStyles, Theme } from '@material-ui/core';
+
+const useStyles = makeStyles(
+  (theme: Theme) =>
+    createStyles({
+      root: {
+        color: theme.palette.text.primary,
+      },
+    }),
+  { name: 'atom-button' }
+);
 
 export type ButtonProps = {
   text: string;
@@ -6,10 +16,16 @@ export type ButtonProps = {
 };
 
 const Button = (props: ButtonProps) => {
+  const classes = useStyles();
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     props.onClickFunction();
   };
-  return <ButtonBase onClick={handleClick}>{props.text}</ButtonBase>;
+  return (
+    <ButtonBase classes={{ root: classes.root }} onClick={handleClick}>
+      {props.text}
+    </ButtonBase>
+  );
 };
 
 export default Button;
