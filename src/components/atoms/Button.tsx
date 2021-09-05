@@ -4,7 +4,7 @@ const useStyles = makeStyles(
   (theme: Theme) =>
     createStyles({
       root: {
-        color: theme.palette.text.primary,
+        ...theme.typography.button,
       },
     }),
   { name: 'atom-button' }

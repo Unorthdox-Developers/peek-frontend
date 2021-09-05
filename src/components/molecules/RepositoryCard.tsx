@@ -1,19 +1,28 @@
-import { Card, CardContent, createStyles, makeStyles } from '@material-ui/core';
+import Button from '@atoms/Button';
+import {
+  Card,
+  CardActions,
+  CardContent,
+  createStyles,
+  makeStyles,
+} from '@material-ui/core';
 import { Theme } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(
   (theme: Theme) =>
     createStyles({
-      card: {
-        padding: '0.5rem',
+      root: {
         margin: '0.5rem',
-        width: '15rem',
-        wordWrap: 'break-word',
+        width: '20rem',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
         backgroundColor: theme.palette.background.paper,
         color: theme.palette.text.primary,
       },
     }),
-  { name: 'molecule-repository' }
+  { name: 'molecule-repository-card' }
 );
 
 export type RepositoryCardProps = {
@@ -22,14 +31,29 @@ export type RepositoryCardProps = {
 
 const RepositoryCard = (props: RepositoryCardProps) => {
   const classes = useStyles();
+  const repositoryData = props.repository;
+
+  const goToGitHub = () => {
+    const newWindow = window.open(
+      repositoryData.html_url,
+      '_blank',
+      'noopener,noreferrer'
+    );
+    if (newWindow) newWindow.opener = null;
+  };
+
+  const goToDashboard = () => {};
 
   return (
-    <Card classes={{ root: classes.card }}>
+    <Card classes={{ root: classes.root }}>
       <CardContent>
-        <h3>{props.repository.name}</h3>
-        <p>{props.repository.description}</p>
-        <a href={props.repository.html_url}>Go to GitHub</a>
+        <Typography>{repositoryData.name}</Typography>
+        <Typography paragraph={true}>{repositoryData.description}</Typography>
       </CardContent>
+      <CardActions>
+        <Button onClickFunction={goToGitHub} text="GitHub" />
+        <Button onClickFunction={goToDashboard} text="Dashboard" />
+      </CardActions>
     </Card>
   );
 };
