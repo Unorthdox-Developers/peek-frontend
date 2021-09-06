@@ -1,9 +1,13 @@
-import SearchInput, { SearchInputProps } from '@molecules/SearchInput';
+import { SearchInputProps } from '@molecules/SearchInput';
 import { useAppSelector, useAppDispatch } from '@redux/hooks';
 import { setSearchText } from '@redux/feature/repositorySearch/repositorySearch';
 import { Strings } from 'src/config/constants';
 import { repositorySearchAsyncThunks } from '@redux/feature/repositorySearch/asyncThunks';
 import { makeStyles, createStyles } from '@material-ui/core';
+import { lazy, Suspense } from 'react';
+import Loading from '@atoms/Loading';
+
+const SearchInput = lazy(() => import('@molecules/SearchInput'));
 
 const useStyles = makeStyles(
   () =>
@@ -35,9 +39,11 @@ const RepositorySearch = (props: RepositorySearchProps) => {
     onEnterPressedFunction: searchRepositoriesFunction,
   };
   return (
-    <div className={classes.container}>
-      <SearchInput {...searchInputProps} />
-    </div>
+    <Suspense fallback={<Loading />}>
+      <div className={classes.container}>
+        <SearchInput {...searchInputProps} />
+      </div>
+    </Suspense>
   );
 };
 

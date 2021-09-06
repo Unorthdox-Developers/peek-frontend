@@ -1,11 +1,7 @@
 import RepositoryDashboardLayout from '@layouts/RepositoryDashboardLayout';
 
 const RepositoryDashboardPage = () => {
-  return (
-    <div>
-      <RepositoryDashboardLayout />
-    </div>
-  );
+  return <RepositoryDashboardLayout />;
 };
 
 export default RepositoryDashboardPage;

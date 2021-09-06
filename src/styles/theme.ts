@@ -2,6 +2,20 @@ import { Theme } from '@material-ui/core';
 import { createTheme } from '@material-ui/core/styles';
 
 export const lightTheme: Theme = createTheme({
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        html: {
+          height: '100%',
+          width: '100%',
+        },
+        body: {
+          height: '100%',
+          width: '100%',
+        },
+      },
+    },
+  },
   palette: {
     text: {
       primary: 'black',
@@ -14,6 +28,20 @@ export const lightTheme: Theme = createTheme({
 });
 
 export const darkTheme: Theme = createTheme({
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        html: {
+          height: '100%',
+          width: '100%',
+        },
+        body: {
+          height: '100%',
+          width: '100%',
+        },
+      },
+    },
+  },
   palette: {
     text: {
       primary: 'white',

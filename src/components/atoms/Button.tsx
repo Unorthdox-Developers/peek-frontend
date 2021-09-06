@@ -1,4 +1,8 @@
-import { ButtonBase, createStyles, makeStyles, Theme } from '@material-ui/core';
+import { createStyles, makeStyles, Theme } from '@material-ui/core';
+import { lazy, Suspense } from 'react';
+import Loading from './Loading';
+
+const ButtonBase = lazy(() => import('@material-ui/core/ButtonBase'));
 
 const useStyles = makeStyles(
   (theme: Theme) =>
@@ -22,9 +26,11 @@ const Button = (props: ButtonProps) => {
     props.onClickFunction();
   };
   return (
-    <ButtonBase classes={{ root: classes.root }} onClick={handleClick}>
-      {props.text}
-    </ButtonBase>
+    <Suspense fallback={<Loading />}>
+      <ButtonBase classes={{ root: classes.root }} onClick={handleClick}>
+        {props.text}
+      </ButtonBase>
+    </Suspense>
   );
 };
 
