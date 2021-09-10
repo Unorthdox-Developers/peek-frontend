@@ -9,6 +9,7 @@ const useStyles = makeStyles(
     createStyles({
       root: {
         ...theme.typography.button,
+        padding: '0.25rem 0.5rem',
       },
     }),
   { name: 'atom-button' }
@@ -22,7 +23,7 @@ export type ButtonProps = {
 const Button = (props: ButtonProps) => {
   const classes = useStyles();
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = () => {
     props.onClickFunction();
   };
   return (

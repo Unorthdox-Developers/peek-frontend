@@ -1,5 +1,8 @@
+import Loading from '@atoms/Loading';
 import { createStyles, makeStyles } from '@material-ui/core';
-import { ReactNode } from 'react';
+import { lazy, ReactNode, Suspense } from 'react';
+
+const Box = lazy(() => import('@material-ui/core/Box'));
 
 const useStyles = makeStyles(
   () =>
@@ -34,13 +37,15 @@ const RepositorySearchLayout = (props: RepositorySearchLayoutProps) => {
   const classes = useStyles();
   const { themeSwitch, search, results } = props;
   return (
-    <div className={classes.container}>
-      <div aria-checked="false" className={classes.themeSwitch}>
-        {themeSwitch}
-      </div>
-      <div className={classes.search}>{search}</div>
-      <div className={classes.results}>{results}</div>
-    </div>
+    <Suspense fallback={<Loading />}>
+      <Box className={classes.container}>
+        <Box aria-checked="false" className={classes.themeSwitch}>
+          {themeSwitch}
+        </Box>
+        <Box className={classes.search}>{search}</Box>
+        <Box className={classes.results}>{results}</Box>
+      </Box>
+    </Suspense>
   );
 };
 

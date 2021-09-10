@@ -3,26 +3,12 @@ import { useAppSelector, useAppDispatch } from '@redux/hooks';
 import { setSearchText } from '@redux/feature/repositorySearch/repositorySearch';
 import { Strings } from 'src/config/constants';
 import { repositorySearchAsyncThunks } from '@redux/feature/repositorySearch/asyncThunks';
-import { makeStyles, createStyles } from '@material-ui/core';
 import { lazy, Suspense } from 'react';
 import Loading from '@atoms/Loading';
 
 const SearchInput = lazy(() => import('@molecules/SearchInput'));
 
-const useStyles = makeStyles(
-  () =>
-    createStyles({
-      container: {
-        margin: '1rem 0',
-      },
-    }),
-  { name: 'organism-repository-search' }
-);
-export type RepositorySearchProps = {};
-
-const RepositorySearch = (props: RepositorySearchProps) => {
-  const classes = useStyles();
-
+const RepositorySearch = () => {
   const searchValue = useAppSelector(
     (state) => state.repositorySearch.searchText
   );
@@ -40,9 +26,7 @@ const RepositorySearch = (props: RepositorySearchProps) => {
   };
   return (
     <Suspense fallback={<Loading />}>
-      <div className={classes.container}>
-        <SearchInput {...searchInputProps} />
-      </div>
+      <SearchInput {...searchInputProps} />
     </Suspense>
   );
 };

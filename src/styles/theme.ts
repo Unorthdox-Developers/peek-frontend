@@ -18,7 +18,7 @@ export const lightTheme: Theme = createTheme({
   },
   palette: {
     text: {
-      primary: 'black',
+      primary: '#1A1A1A',
     },
     background: {
       paper: '#F2F2F2',

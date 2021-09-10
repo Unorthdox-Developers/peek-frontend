@@ -21,9 +21,9 @@ const useStyles = makeStyles(
 const MainPage = () => {
   const classes = useStyles();
   return (
-    <Suspense fallback={<Loading />}>
-      <Container classes={{ root: classes.root }}>
-        <BrowserRouter>
+    <BrowserRouter>
+      <Suspense fallback={<Loading />}>
+        <Container classes={{ root: classes.root }}>
           <Switch>
             <Route exact path="/">
               <Redirect to={PublicRoutes[0].path} />
@@ -34,9 +34,9 @@ const MainPage = () => {
               </Route>
             ))}
           </Switch>
-        </BrowserRouter>
-      </Container>
-    </Suspense>
+        </Container>
+      </Suspense>
+    </BrowserRouter>
   );
 };
 
