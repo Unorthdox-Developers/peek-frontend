@@ -5,7 +5,7 @@ export type SwitchProps = {
 };
 
 const Switch = (props: SwitchProps) => {
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = () => {
     props.onChangeFunction();
   };
   return <MaterialSwitch onChange={handleChange} />;

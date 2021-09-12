@@ -1,4 +1,8 @@
-import { createStyles, InputBase, makeStyles, Theme } from '@material-ui/core';
+import { createStyles, makeStyles, Theme } from '@material-ui/core';
+import { lazy, Suspense } from 'react';
+import Loading from './Loading';
+
+const InputBase = lazy(() => import('@material-ui/core/InputBase'));
 
 const useStyles = makeStyles(
   (theme: Theme) =>
@@ -34,13 +38,15 @@ const TextInput = (props: TextInputProps) => {
     }
   };
   return (
-    <InputBase
-      classes={{ root: classes.root }}
-      type="text"
-      {...restProps}
-      onChange={handleChange}
-      onKeyPress={handleKeyPress}
-    />
+    <Suspense fallback={<Loading />}>
+      <InputBase
+        classes={{ root: classes.root }}
+        type="text"
+        {...restProps}
+        onChange={handleChange}
+        onKeyPress={handleKeyPress}
+      />
+    </Suspense>
   );
 };
 

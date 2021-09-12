@@ -1,38 +1,51 @@
+import Loading from '@atoms/Loading';
 import { createStyles, makeStyles } from '@material-ui/core';
-import { ReactNode } from 'react';
+import { lazy, ReactNode, Suspense } from 'react';
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    container: {
-      display: 'flex',
-      alignItems: 'center',
-      flexDirection: 'column',
-      minHeight: '100%',
-    },
-    themeSwitch: {
-      display: 'none',
-    },
-    search: {},
-    results: {},
-  })
+const Box = lazy(() => import('@material-ui/core/Box'));
+
+const useStyles = makeStyles(
+  () =>
+    createStyles({
+      container: {
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column',
+        width: '100%',
+        height: '100%',
+      },
+      themeSwitch: {
+        display: 'none',
+      },
+      search: {
+        width: '100%',
+      },
+      results: {
+        width: '100%',
+      },
+    }),
+  { name: 'repository-search-layout' }
 );
 
 export type RepositorySearchLayoutProps = {
-  children: {
-    themeSwitch: ReactNode;
-    search: ReactNode;
-    results: ReactNode;
-  };
+  themeSwitch: ReactNode;
+  search: ReactNode;
+  results: ReactNode;
 };
 
 const RepositorySearchLayout = (props: RepositorySearchLayoutProps) => {
   const classes = useStyles();
+  const { themeSwitch, search, results } = props;
   return (
-    <div className={classes.container}>
-      <div className={classes.themeSwitch}>{props.children.themeSwitch}</div>
-      <div>{props.children.search}</div>
-      <div>{props.children.results}</div>
-    </div>
+    <Suspense fallback={<Loading />}>
+      <Box className={classes.container}>
+        <Box aria-checked="false" className={classes.themeSwitch}>
+          {themeSwitch}
+        </Box>
+        <Box className={classes.search}>{search}</Box>
+        <Box className={classes.results}>{results}</Box>
+      </Box>
+    </Suspense>
   );
 };
 
