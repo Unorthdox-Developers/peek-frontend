@@ -23,7 +23,7 @@ const RepositorySearchResults = () => {
   const classes = useStyles();
   const searchResults = useAppSelector((state) =>
     state.repositorySearch.searchResults.map((result, index) => (
-      <RepositoryCard repository={result} />
+      <RepositoryCard repository={result} key={index} />
     ))
   );
   return (
