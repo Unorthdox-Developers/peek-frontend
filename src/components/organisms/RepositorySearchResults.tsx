@@ -1,8 +1,10 @@
+import Loading from '@atoms/Loading';
 import { makeStyles, createStyles } from '@material-ui/core';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import RepositoryCard from '@molecules/RepositoryCard';
 import { useAppSelector } from '@redux/hooks';
-import { AsyncTrunkRequestStatus } from 'src/config/constants';
+import { lazy, Suspense } from 'react';
+
+const RepositoryCard = lazy(() => import('@molecules/RepositoryCard'));
+const Box = lazy(() => import('@material-ui/core/Box'));
 
 const useStyles = makeStyles(
   () =>
@@ -17,29 +19,18 @@ const useStyles = makeStyles(
   { name: 'organism-repository-search-results' }
 );
 
-export type RepositorySearchResultsProps = {};
-
-const RepositorySearchResults = (props: RepositorySearchResultsProps) => {
+const RepositorySearchResults = () => {
   const classes = useStyles();
-
-  const searchStatus = useAppSelector(
-    (state) => state.repositorySearch.searchStatus
-  );
-
   const searchResults = useAppSelector((state) =>
     state.repositorySearch.searchResults.map((result, index) => (
-      <RepositoryCard repository={result} key={`repository-card-${index}`} />
+      <RepositoryCard repository={result} key={index} />
     ))
   );
-  if (searchStatus === AsyncTrunkRequestStatus.Pending) {
-    return (
-      <div>
-        <CircularProgress />
-      </div>
-    );
-  } else {
-    return <div className={classes.container}>{searchResults}</div>;
-  }
+  return (
+    <Suspense fallback={<Loading />}>
+      <Box className={classes.container}>{searchResults}</Box>
+    </Suspense>
+  );
 };
 
 export default RepositorySearchResults;

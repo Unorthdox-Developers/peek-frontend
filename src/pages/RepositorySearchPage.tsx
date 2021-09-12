@@ -1,19 +1,26 @@
-import RepositorySearch from '@organisms/RepositorySearch';
-import RepositorySearchLayout from '@layouts/RepositorySearchLayout';
-import RepositorySearchResults from '@organisms/RepositorySearchResults';
-import ThemeSwitch from '@molecules/ThemeSwitch';
+import Loading from '@atoms/Loading';
+import { RepositorySearchLayoutProps } from '@layouts/RepositorySearchLayout';
+import { lazy, Suspense } from 'react';
+
+const RepositorySearch = lazy(() => import('@organisms/RepositorySearch'));
+const RepositorySearchLayout = lazy(
+  () => import('@layouts/RepositorySearchLayout')
+);
+const RepositorySearchResults = lazy(
+  () => import('@organisms/RepositorySearchResults')
+);
+const ThemeSwitch = lazy(() => import('@molecules/ThemeSwitch'));
 
 const RepositorySearchPage = () => {
+  const layoutProps: RepositorySearchLayoutProps = {
+    search: <RepositorySearch />,
+    results: <RepositorySearchResults />,
+    themeSwitch: <ThemeSwitch />,
+  };
   return (
-    <div>
-      <RepositorySearchLayout>
-        {{
-          search: <RepositorySearch />,
-          results: <RepositorySearchResults />,
-          themeSwitch: <ThemeSwitch />,
-        }}
-      </RepositorySearchLayout>
-    </div>
+    <Suspense fallback={<Loading />}>
+      <RepositorySearchLayout {...layoutProps} />
+    </Suspense>
   );
 };
 

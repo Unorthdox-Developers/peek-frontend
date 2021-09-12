@@ -1,9 +1,15 @@
-import Button, { ButtonProps } from '@atoms/Button';
-import TextInput, { TextInputProps } from '@atoms/TextInput';
-import { makeStyles, createStyles } from '@material-ui/core';
+import { ButtonProps } from '@atoms/Button';
+import Loading from '@atoms/Loading';
+import { TextInputProps } from '@atoms/TextInput';
+import { makeStyles, createStyles, Theme } from '@material-ui/core';
+import { lazy, Suspense } from 'react';
+
+const TextInput = lazy(() => import('@atoms/TextInput'));
+const Button = lazy(() => import('@atoms/Button'));
+const Box = lazy(() => import('@material-ui/core/Box'));
 
 const useStyles = makeStyles(
-  () =>
+  (theme: Theme) =>
     createStyles({
       container: {
         display: 'flex',
@@ -11,6 +17,7 @@ const useStyles = makeStyles(
         alignItems: 'center',
         flexDirection: 'row',
         flexWrap: 'wrap',
+        margin: '0.25rem 0.5rem',
       },
     }),
   { name: 'organism-repository-search' }
@@ -37,10 +44,12 @@ const SearchInput = (props: SearchInputProps) => {
     onClickFunction: props.onClickFunction,
   };
   return (
-    <div className={classes.container}>
-      <TextInput {...textInputProps} />
-      <Button {...buttonProps} />
-    </div>
+    <Suspense fallback={<Loading />}>
+      <Box className={classes.container}>
+        <TextInput {...textInputProps} />
+        <Button {...buttonProps} />
+      </Box>
+    </Suspense>
   );
 };
 

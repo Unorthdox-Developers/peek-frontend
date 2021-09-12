@@ -1,6 +1,4 @@
-export type RepositoryDashboardLayoutProps = {};
-
-const RepositorySearchLayout = (props: RepositoryDashboardLayoutProps) => {
+const RepositorySearchLayout = () => {
   return <div>Dashboard</div>;
 };
 
