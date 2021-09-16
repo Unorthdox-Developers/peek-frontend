@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core';
 import { Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles(
   (theme: Theme) =>
@@ -30,6 +31,7 @@ export type RepositoryCardProps = {
 };
 
 const RepositoryCard = (props: RepositoryCardProps) => {
+  let history = useHistory();
   const classes = useStyles();
   const repositoryData = props.repository;
 
@@ -42,7 +44,9 @@ const RepositoryCard = (props: RepositoryCardProps) => {
     if (newWindow) newWindow.opener = null;
   };
 
-  const goToDashboard = () => {};
+  const goToDashboard = () => {
+    history.push('/repositorydashboard');
+  };
 
   return (
     <Card classes={{ root: classes.root }}>

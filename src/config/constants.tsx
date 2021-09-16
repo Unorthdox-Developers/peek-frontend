@@ -5,6 +5,9 @@ export const Strings = {
       buttonText: 'Search',
     },
   },
+  dynamic: {
+    results: (count: number) => (count === 1 ? 'result' : 'results'),
+  },
 };
 
 export enum AsyncTrunkRequestStatus {

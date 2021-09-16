@@ -12,6 +12,12 @@ const RepositorySearch = () => {
   const searchValue = useAppSelector(
     (state) => state.repositorySearch.searchText
   );
+  const searchStatus = useAppSelector(
+    (state) => state.repositorySearch.searchStatus
+  );
+  const searchResultsCount = useAppSelector(
+    (state) => state.repositorySearch.totalResultsCount
+  );
   const dispatch = useAppDispatch();
   const searchRepositoriesFunction = () =>
     dispatch(repositorySearchAsyncThunks.postRepositorySearch(searchValue));
@@ -20,6 +26,8 @@ const RepositorySearch = () => {
     value: searchValue,
     placeholder: Strings.default.repositorySearch.placeholder,
     buttonText: Strings.default.repositorySearch.buttonText,
+    searchStatus: searchStatus,
+    searchResultsCount: searchResultsCount,
     onChangeFunction: (text: string) => dispatch(setSearchText(text)),
     onClickFunction: searchRepositoriesFunction,
     onEnterPressedFunction: searchRepositoriesFunction,

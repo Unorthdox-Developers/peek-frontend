@@ -3,16 +3,23 @@ import type { RootState } from '@redux/store';
 import { repositorySearchAsyncThunks } from './asyncThunks';
 import { AsyncTrunkRequestStatus } from 'src/config/constants';
 
+export type SearchResultPayload = {
+  total_count: number;
+  items: any[];
+};
+
 type RepositorySearchState = {
   searchText: string;
   searchResults: any[];
   searchStatus: AsyncTrunkRequestStatus;
+  totalResultsCount: number;
 };
 
 const initialState: RepositorySearchState = {
   searchText: '',
   searchResults: [],
   searchStatus: AsyncTrunkRequestStatus.Initial,
+  totalResultsCount: 0,
 };
 
 export const repositorySearchSlice = createSlice({
@@ -41,9 +48,13 @@ export const repositorySearchSlice = createSlice({
     );
     builder.addCase(
       repositorySearchAsyncThunks.postRepositorySearch.fulfilled,
-      (state: RepositorySearchState, action) => {
+      (
+        state: RepositorySearchState,
+        action: PayloadAction<SearchResultPayload>
+      ) => {
         state.searchStatus = AsyncTrunkRequestStatus.Fulfilled;
-        state.searchResults = [...action.payload];
+        state.searchResults = [...action.payload.items];
+        state.totalResultsCount = action.payload.total_count;
       }
     );
   },
